@@ -1,0 +1,34 @@
+Questo è il ciclo che devo interiorizzare — ogni sessione di studio:
+
+# Prima di iniziare: controlla lo stato
+git status
+
+# Lavori su un concetto nuovo? Crea un branch
+git checkout -b feature/linq-exercises
+
+# ... scrivi codice, studia, prova ...
+
+# Aggiungi solo i file che hai modificato (non git add . a caso)
+git add Playground.Console/LinqExercises.cs
+
+# Commit atomico con messaggio sensato
+git commit -m "feat: add LINQ GroupBy and Aggregate exercises"
+
+# Spingi sul remoto
+git push origin feature/linq-exercises
+```
+
+Per esercizi di studio puoi anche lavorare direttamente su `main` senza branch — va bene. Il branch diventa importante su MotoLogPro.
+
+---
+
+## 5. Come organizzare i file dentro Playground.Console
+
+Invece di mettere tutto in `Program.cs`, crea una classe per argomento:
+```
+Playground.Console/
+├── Program.cs              ← chiama gli esempi che vuoi testare
+├── LinqExercises.cs        ← esercizi LINQ
+├── AsyncExamples.cs        ← esempi async/await
+├── PatternExamples.cs      ← design pattern
+└── ...

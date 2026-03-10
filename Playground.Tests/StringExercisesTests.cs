@@ -38,4 +38,39 @@ public class StringExercisesTests
         int length = message.IndexOf(closeTag) - open;
         Assert.Equal("hello", message.Substring(open, length));
     }
+
+    [Fact]
+    public void LastIndexOf_TrovaUltimaOccorrenza()
+    {
+        string message = "hello there!";
+        Assert.Equal(7, message.LastIndexOf('h'));
+    }
+
+    [Fact]
+    public void While_EstraeTosteLeParentesi()
+    {
+        string message = "(alfa) e (beta) e (gamma)";
+        var risultati = new List<string>();
+
+        while (true)
+        {
+            int open = message.IndexOf('(');
+            if (open == -1) break;
+            open += 1;
+            int close = message.IndexOf(')');
+            risultati.Add(message.Substring(open, close - open));
+            message = message.Substring(close + 1);
+        }
+
+        Assert.Equal(new[] { "alfa", "beta", "gamma" }, risultati);
+    }
+
+    [Fact]
+    public void IndexOfAny_TrovaPrimoSimboloApertura()
+    {
+        string message = "Testo (con parentesi)";
+        char[] simboli = { '[', '{', '(' };
+        int pos = message.IndexOfAny(simboli);
+        Assert.Equal('(', message[pos]);
+    }
 }

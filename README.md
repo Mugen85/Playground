@@ -37,7 +37,10 @@ dotnet test
 
 | Argomento | File | Test |
 |-----------|------|------|
-| `IndexOf` e `Substring` | `StringExercises.cs` | `StringExercisesTests.cs` |
+| `IndexOf` e `Substring` — trovare e estrarre sottostringhe | `StringExercises.cs` | `StringExercisesTests.cs` |
+| `LastIndexOf` — ultima occorrenza di un carattere | `StringExercises.cs` | `StringExercisesTests.cs` |
+| `while` loop + `Substring` — estrarre tutte le occorrenze | `StringExercises.cs` | `StringExercisesTests.cs` |
+| `IndexOfAny` — cercare simboli multipli contemporaneamente | `StringExercises.cs` | `StringExercisesTests.cs` |
 
 *(aggiornato man mano che procede lo studio)*
 

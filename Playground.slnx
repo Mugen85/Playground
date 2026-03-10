@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Playground.Console/Playground.Console.csproj" />
+  <Project Path="Playground.Tests/Playground.Tests.csproj" />
+</Solution>

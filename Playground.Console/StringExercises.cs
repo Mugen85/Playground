@@ -14,6 +14,7 @@ public static class StringExercises
         EsercizioIndexOfAny();
         Remove();
         Replace();
+        EsercizioChallengeHtml();
     }
 
     static void EsercizioIndexOfBase()
@@ -200,4 +201,29 @@ public static class StringExercises
         string result = testo.Replace(toReplace, "[REDACTED]");
         System.Console.WriteLine(result);
     }
+    static void EsercizioChallengeHtml()
+    {
+        System.Console.WriteLine("=== Challenge: estrarre testo da HTML ===");
+
+        const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+        const string openSpan  = "<span>";
+        const string closeSpan = "</span>";
+
+        // Estrai quantity tra <span> e </span>
+        int openingPosition = input.IndexOf(openSpan) + openSpan.Length;
+        int closingPosition = input.IndexOf(closeSpan); 
+        string quantity = input.Substring(openingPosition, closingPosition - openingPosition);
+
+       // Rimuovi <div> all'inizio
+        string output = input.Remove(0, "<div>".Length);
+       // Rimuovi </div> alla fine — LastIndexOf trova la posizione, Length evita il conteggio
+        int lastDivPos = output.LastIndexOf("</div>");
+        output = output.Remove(lastDivPos, "</div>".Length);
+
+        output = output.Replace("&trade;", "&reg;");
+
+        System.Console.WriteLine($"Quantity: {quantity}"); // <span>5000
+        System.Console.WriteLine($"Output: {output}"); // <h2>Widgets &reg;</h2><span>5000</span>
+    }
+    
 }

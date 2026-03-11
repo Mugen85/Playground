@@ -98,4 +98,43 @@ public class StringExercisesTests
         message = message.Replace("B", "D");
         Assert.Equal("Dig Dog", message);
     }
+
+    [Fact]
+    public void ChallengeHtml_EstraeQuantity()
+    {
+        const string input    = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+        const string openSpan = "<span>";
+        const string closeSpan = "</span>";
+
+        int open   = input.IndexOf(openSpan) + openSpan.Length;
+        int close  = input.IndexOf(closeSpan);
+        string quantity = input.Substring(open, close - open);
+
+        Assert.Equal("5000", quantity);
+    }
+
+    [Fact]
+    public void ChallengeHtml_RimuoveDivEsterni()
+    {
+        const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+        string output = input.Remove(0, "<div>".Length);
+        int lastDiv   = output.LastIndexOf("</div>");
+        output        = output.Remove(lastDiv, "</div>".Length);
+
+        Assert.DoesNotContain("<div>", output);
+        Assert.DoesNotContain("</div>", output);
+        Assert.StartsWith("<h2>", output);
+        Assert.EndsWith("</span>", output);
+    }
+
+    [Fact]
+    public void ChallengeHtml_SostituisceTradeConReg()
+    {
+        const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+        string output = input.Replace("&trade;", "&reg;");
+
+        Assert.Contains("&reg;", output);
+        Assert.DoesNotContain("&trade;", output);
+    }
 }

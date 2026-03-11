@@ -43,6 +43,7 @@ dotnet test
 | `IndexOfAny` — cercare simboli multipli contemporaneamente | `StringExercises.cs` | `StringExercisesTests.cs` |
 | `Remove` — rimuovere caratteri per posizione fissa o dinamica | `StringExercises.cs` | `StringExercisesTests.cs` |
 | `Replace` — sostituire tutte le occorrenze di una sottostringa | `StringExercises.cs` | `StringExercisesTests.cs` |
+| Challenge HTML — estrarre, rimuovere e sostituire da stringa HTML | `StringExercises.cs` | `StringExercisesTests.cs` |
 
 *(aggiornato man mano che procede lo studio)*
 

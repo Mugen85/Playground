@@ -41,6 +41,8 @@ dotnet test
 | `LastIndexOf` — ultima occorrenza di un carattere | `StringExercises.cs` | `StringExercisesTests.cs` |
 | `while` loop + `Substring` — estrarre tutte le occorrenze | `StringExercises.cs` | `StringExercisesTests.cs` |
 | `IndexOfAny` — cercare simboli multipli contemporaneamente | `StringExercises.cs` | `StringExercisesTests.cs` |
+| `Remove` — rimuovere caratteri per posizione fissa o dinamica | `StringExercises.cs` | `StringExercisesTests.cs` |
+| `Replace` — sostituire tutte le occorrenze di una sottostringa | `StringExercises.cs` | `StringExercisesTests.cs` |
 
 *(aggiornato man mano che procede lo studio)*
 

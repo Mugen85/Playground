@@ -12,26 +12,28 @@ public static class StringExercises
         EsercizioUltimaCoppiaDiParentesi();
         EsercizioTutteLeParentesiConWhile();
         EsercizioIndexOfAny();
+        Remove();
+        Replace();
     }
 
-   static void EsercizioIndexOfBase()
-{
-    System.Console.WriteLine("=== IndexOf base ===");
+    static void EsercizioIndexOfBase()
+    {
+        System.Console.WriteLine("=== IndexOf base ===");
 
-    string message = "Find what is (inside the parentheses)";
+        string message = "Find what is (inside the parentheses)";
 
-    int openingPosition = message.IndexOf('(');
-    int closingPosition = message.IndexOf(')');
+        int openingPosition = message.IndexOf('(');
+        int closingPosition = message.IndexOf(')');
 
-    // Step 1: vedo le posizioni grezze
-    System.Console.WriteLine($"Posizione '(': {openingPosition}"); // 13
-    System.Console.WriteLine($"Posizione ')': {closingPosition}"); // 36
+        // Step 1: vedo le posizioni grezze
+        System.Console.WriteLine($"Posizione '(': {openingPosition}"); // 13
+        System.Console.WriteLine($"Posizione ')': {closingPosition}"); // 36
 
-    // Step 2: estraggo il contenuto escludendo la parentesi
-    openingPosition += 1;
-    int length = closingPosition - openingPosition;
-    System.Console.WriteLine(message.Substring(openingPosition, length));
-}
+        // Step 2: estraggo il contenuto escludendo la parentesi
+        openingPosition += 1;
+        int length = closingPosition - openingPosition;
+        System.Console.WriteLine(message.Substring(openingPosition, length));
+    }
 
     static void EsercizioSubstringConTag()
     {
@@ -78,85 +80,124 @@ public static class StringExercises
     }
 
     static void EsercizioLastIndexOf()
-{
-    System.Console.WriteLine("=== LastIndexOf ===");
-
-    string message = "hello there!";
-
-    int first_h = message.IndexOf('h');
-    int last_h = message.LastIndexOf('h');
-
-    System.Console.WriteLine($"Prima 'h': posizione {first_h}");   // 0
-    System.Console.WriteLine($"Ultima 'h': posizione {last_h}");   // 7
-}
-
-static void EsercizioUltimaCoppiaDiParentesi()
-{
-    System.Console.WriteLine("=== Ultima coppia di parentesi ===");
-
-    string message = "(What if) I am (only interested) in the last (set of parentheses)?";
-    int openingPosition = message.LastIndexOf('(');
-
-    openingPosition += 1;
-    int closingPosition = message.LastIndexOf(')');
-    int length = closingPosition - openingPosition;
-    System.Console.WriteLine(message.Substring(openingPosition, length));
-    // output: set of parentheses
-}
-
-static void EsercizioTutteLeParentesiConWhile()
-{
-    System.Console.WriteLine("=== Tutte le parentesi con while ===");
-
-    string message = "(What if) there are (more than) one (set of parentheses)?";
-
-    while (true)
     {
-        int openingPosition = message.IndexOf('(');
-        if (openingPosition == -1) break; // nessuna parentesi rimasta → esci
+        System.Console.WriteLine("=== LastIndexOf ===");
+
+        string message = "hello there!";
+
+        int first_h = message.IndexOf('h');
+        int last_h = message.LastIndexOf('h');
+
+        System.Console.WriteLine($"Prima 'h': posizione {first_h}");   // 0
+        System.Console.WriteLine($"Ultima 'h': posizione {last_h}");   // 7
+    }
+
+    static void EsercizioUltimaCoppiaDiParentesi()
+    {
+        System.Console.WriteLine("=== Ultima coppia di parentesi ===");
+
+        string message = "(What if) I am (only interested) in the last (set of parentheses)?";
+        int openingPosition = message.LastIndexOf('(');
 
         openingPosition += 1;
-        int closingPosition = message.IndexOf(')');
+        int closingPosition = message.LastIndexOf(')');
         int length = closingPosition - openingPosition;
         System.Console.WriteLine(message.Substring(openingPosition, length));
-
-        // taglia la stringa dopo la parentesi chiusa → prossima iterazione
-        message = message.Substring(closingPosition + 1);
+        // output: set of parentheses
     }
-    // output: What if / more than / set of parentheses
-}
 
-static void EsercizioIndexOfAny()
-{
-    System.Console.WriteLine("=== IndexOfAny con simboli misti ===");
-
-    string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
-
-    char[] openSymbols = { '[', '{', '(' };
-    int closingPosition = 0;
-
-    while (true)
+    static void EsercizioTutteLeParentesiConWhile()
     {
-        int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
-        if (openingPosition == -1) break;
+        System.Console.WriteLine("=== Tutte le parentesi con while ===");
 
-        // capisce quale simbolo ha trovato
-        string currentSymbol = message.Substring(openingPosition, 1);
+        string message = "(What if) there are (more than) one (set of parentheses)?";
 
-        char matchingSymbol = ' ';
-        switch (currentSymbol)
+        while (true)
         {
-            case "[": matchingSymbol = ']'; break;
-            case "{": matchingSymbol = '}'; break;
-            case "(": matchingSymbol = ')'; break;
+            int openingPosition = message.IndexOf('(');
+            if (openingPosition == -1) break; // nessuna parentesi rimasta → esci
+
+            openingPosition += 1;
+            int closingPosition = message.IndexOf(')');
+            int length = closingPosition - openingPosition;
+            System.Console.WriteLine(message.Substring(openingPosition, length));
+
+            // taglia la stringa dopo la parentesi chiusa → prossima iterazione
+            message = message.Substring(closingPosition + 1);
         }
-
-        openingPosition += 1;
-        closingPosition = message.IndexOf(matchingSymbol, openingPosition);
-
-        int length = closingPosition - openingPosition;
-        System.Console.WriteLine(message.Substring(openingPosition, length));
+        // output: What if / more than / set of parentheses
     }
-    // output: What if / different symbols / open symbol / matching closing symbol
-}
+
+    static void EsercizioIndexOfAny()
+    {
+        System.Console.WriteLine("=== IndexOfAny con simboli misti ===");
+
+        string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
+
+        char[] openSymbols = { '[', '{', '(' };
+        int closingPosition = 0;
+
+        while (true)
+        {
+            int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
+            if (openingPosition == -1) break;
+
+            // capisce quale simbolo ha trovato
+            string currentSymbol = message.Substring(openingPosition, 1);
+
+            char matchingSymbol = ' ';
+            switch (currentSymbol)
+            {
+                case "[": matchingSymbol = ']'; break;
+                case "{": matchingSymbol = '}'; break;
+                case "(": matchingSymbol = ')'; break;
+            }
+
+            openingPosition += 1;
+            closingPosition = message.IndexOf(matchingSymbol, openingPosition);
+
+            int length = closingPosition - openingPosition;
+            System.Console.WriteLine(message.Substring(openingPosition, length));
+        }
+        // output: What if / different symbols / open symbol / matching closing symbol
+    }
+    static void Remove()
+    {
+        System.Console.WriteLine("=== Remove — posizione fissa ===");
+
+        // Caso d'uso reale: dati con struttura fissa (es. file legacy)
+        // 5 cifre ID | 20 caratteri nome | 6 importo | 3 articoli
+        string data = "12345John Smith          5000  3  ";
+        string updatedData = data.Remove(5, 20); // rimuovo il nome
+        System.Console.WriteLine(updatedData);   // 123455000  3
+
+        System.Console.WriteLine("=== Remove — posizione dinamica ===");
+
+        // Variante: posizione calcolata con IndexOf
+        string message = "What if I want to remove (this part) from the string?";
+        int openingPosition = message.IndexOf('(');
+        int closingPosition = message.IndexOf(')') + 1;
+        string result = message.Remove(openingPosition, closingPosition - openingPosition);
+        System.Console.WriteLine(result);
+    }
+    static void Replace()
+    {
+        System.Console.WriteLine("=== Replace — uso diretto ===");
+
+        // Caso d'uso principale: pulizia di dati con pattern ripetuto
+        string message = "This--is--ex-amp-le--da-ta";
+        message = message.Replace("--", " ");  // doppio trattino → spazio
+        message = message.Replace("-", "");    // trattino singolo → niente
+        System.Console.WriteLine(message);     // This is example data
+
+        System.Console.WriteLine("=== Replace — con posizione calcolata ===");
+
+        // Versione con IndexOf: salva le posizioni in variabili (non ripetere IndexOf)
+        string testo = "What if I want to replace (this part) with something else?";
+        int open = testo.IndexOf('(');
+        int close = testo.IndexOf(')') + 1;        // salvo subito il risultato
+        string toReplace = testo.Substring(open, close - open);
+        string result = testo.Replace(toReplace, "[REDACTED]");
+        System.Console.WriteLine(result);
+    }
 }

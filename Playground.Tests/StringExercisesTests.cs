@@ -73,4 +73,29 @@ public class StringExercisesTests
         int pos = message.IndexOfAny(simboli);
         Assert.Equal('(', message[pos]);
     }
+    [Fact]
+    public void Remove_EliminaCaratteriInPosizioneFissa()
+    {
+        string data = "12345John Smith          5000  3  ";
+        string result = data.Remove(5, 20);
+        Assert.StartsWith("12345", result);
+        Assert.DoesNotContain("John Smith", result);
+    }
+
+    [Fact]
+    public void Replace_SostituisceOgniOccorrenza()
+    {
+        string message = "This--is--ex-amp-le--da-ta";
+        message = message.Replace("--", " ").Replace("-", "");
+        Assert.Equal("This is example data", message);
+    }
+
+    [Fact]
+    public void Replace_RispondeBig_Dog_EsempioDaQuiz()
+    {
+        // risposta alla domanda del quiz finale del modulo
+        string message = "Big Dog";
+        message = message.Replace("B", "D");
+        Assert.Equal("Dig Dog", message);
+    }
 }

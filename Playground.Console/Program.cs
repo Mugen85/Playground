@@ -1,2 +1,2 @@
-﻿Playground.Console.StringExercises.Run();
-Playground.Console.DogAdoptionApp.Run();
+﻿Playground.App.StringExercises.Run();
+Playground.App.DogAdoptionApp.Run();

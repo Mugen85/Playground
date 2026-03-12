@@ -1,4 +1,4 @@
-namespace Playground.Console
+namespace Playground.App
 {
     public class DogAdoptionApp
     {
@@ -85,15 +85,15 @@ namespace Playground.Console
             do
             {
                 // NOTE: the Console.Clear method is throwing an exception in debug sessions
-                System.Console.Clear();
+                Console.Clear();
 
-                System.Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
-                System.Console.WriteLine(" 1. List all of our current pet information");
-                System.Console.WriteLine(" 2. Display all dogs with a specified characteristic");
-                System.Console.WriteLine();
-                System.Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
+                Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
+                Console.WriteLine(" 1. List all of our current pet information");
+                Console.WriteLine(" 2. Display all dogs with a specified characteristic");
+                Console.WriteLine();
+                Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
 
-                readResult = System.Console.ReadLine();
+                readResult = Console.ReadLine();
                 if (readResult != null)
                 {
                     menuSelection = readResult.ToLower();
@@ -108,23 +108,23 @@ namespace Playground.Console
                         {
                             if (ourAnimals[i, 0] != "ID #: ")
                             {
-                                System.Console.WriteLine();
+                                Console.WriteLine();
                                 for (int j = 0; j < 6; j++)
                                 {
-                                    System.Console.WriteLine(ourAnimals[i, j]);
+                                    Console.WriteLine(ourAnimals[i, j]);
                                 }
                             }
                         }
-                        System.Console.WriteLine("\n\rPress the Enter key to continue");
-                        readResult = System.Console.ReadLine();
+                        Console.WriteLine("\n\rPress the Enter key to continue");
+                        readResult = Console.ReadLine();
 
                         break;
 
                     case "2":
                         // Display all dogs with a specified characteristic
-                        System.Console.WriteLine("\nUNDER CONSTRUCTION - please check back next month to see progress.");
-                        System.Console.WriteLine("Press the Enter key to continue.");
-                        readResult = System.Console.ReadLine();
+                        Console.WriteLine("\nUNDER CONSTRUCTION - please check back next month to see progress.");
+                        Console.WriteLine("Press the Enter key to continue.");
+                        readResult = Console.ReadLine();
                         break;
 
                     default:

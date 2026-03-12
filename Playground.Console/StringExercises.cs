@@ -1,4 +1,4 @@
-namespace Playground.Console;
+namespace Playground.App;
 
 public static class StringExercises
 {
@@ -19,7 +19,7 @@ public static class StringExercises
 
     static void EsercizioIndexOfBase()
     {
-        System.Console.WriteLine("=== IndexOf base ===");
+        Console.WriteLine("=== IndexOf base ===");
 
         string message = "Find what is (inside the parentheses)";
 
@@ -27,18 +27,18 @@ public static class StringExercises
         int closingPosition = message.IndexOf(')');
 
         // Step 1: vedo le posizioni grezze
-        System.Console.WriteLine($"Posizione '(': {openingPosition}"); // 13
-        System.Console.WriteLine($"Posizione ')': {closingPosition}"); // 36
+        Console.WriteLine($"Posizione '(': {openingPosition}"); // 13
+        Console.WriteLine($"Posizione ')': {closingPosition}"); // 36
 
         // Step 2: estraggo il contenuto escludendo la parentesi
         openingPosition += 1;
         int length = closingPosition - openingPosition;
-        System.Console.WriteLine(message.Substring(openingPosition, length));
+        Console.WriteLine(message.Substring(openingPosition, length));
     }
 
     static void EsercizioSubstringConTag()
     {
-        System.Console.WriteLine("=== Substring con tag HTML ===");
+        Console.WriteLine("=== Substring con tag HTML ===");
 
         string message = "What is the value <span>between the tags</span>?";
 
@@ -47,12 +47,12 @@ public static class StringExercises
 
         openingPosition += 6; // magic number — vedremo perché è sbagliato
         int length = closingPosition - openingPosition;
-        System.Console.WriteLine(message.Substring(openingPosition, length));
+        Console.WriteLine(message.Substring(openingPosition, length));
     }
 
     static void EsercizioSenzaValoriMagici()
     {
-        System.Console.WriteLine("=== Senza magic values (versione corretta) ===");
+        Console.WriteLine("=== Senza magic values (versione corretta) ===");
 
         string message = "What is the value <span>between the tags</span>?";
 
@@ -64,38 +64,38 @@ public static class StringExercises
 
         openingPosition += openSpan.Length; // ora se cambio il tag non si rompe nulla
         int length = closingPosition - openingPosition;
-        System.Console.WriteLine(message.Substring(openingPosition, length));
+        Console.WriteLine(message.Substring(openingPosition, length));
     }
 
     static void EsercizioPerTrovarePosizioneCaratteri()
     {
-        System.Console.WriteLine("=== Trovare la posizione di un carattere ===");
+        Console.WriteLine("=== Trovare la posizione di un carattere ===");
 
         string message = "C# Time";
 
         int positionC = message.IndexOf('C');
         int positionZ = message.IndexOf('Z');
 
-        System.Console.WriteLine($"Posizione 'C': {positionC}"); // 0
-        System.Console.WriteLine($"Posizione 'Z': {positionZ}"); // -1
+        Console.WriteLine($"Posizione 'C': {positionC}"); // 0
+        Console.WriteLine($"Posizione 'Z': {positionZ}"); // -1
     }
 
     static void EsercizioLastIndexOf()
     {
-        System.Console.WriteLine("=== LastIndexOf ===");
+        Console.WriteLine("=== LastIndexOf ===");
 
         string message = "hello there!";
 
         int first_h = message.IndexOf('h');
         int last_h = message.LastIndexOf('h');
 
-        System.Console.WriteLine($"Prima 'h': posizione {first_h}");   // 0
-        System.Console.WriteLine($"Ultima 'h': posizione {last_h}");   // 7
+        Console.WriteLine($"Prima 'h': posizione {first_h}");   // 0
+        Console.WriteLine($"Ultima 'h': posizione {last_h}");   // 7
     }
 
     static void EsercizioUltimaCoppiaDiParentesi()
     {
-        System.Console.WriteLine("=== Ultima coppia di parentesi ===");
+        Console.WriteLine("=== Ultima coppia di parentesi ===");
 
         string message = "(What if) I am (only interested) in the last (set of parentheses)?";
         int openingPosition = message.LastIndexOf('(');
@@ -103,13 +103,13 @@ public static class StringExercises
         openingPosition += 1;
         int closingPosition = message.LastIndexOf(')');
         int length = closingPosition - openingPosition;
-        System.Console.WriteLine(message.Substring(openingPosition, length));
+        Console.WriteLine(message.Substring(openingPosition, length));
         // output: set of parentheses
     }
 
     static void EsercizioTutteLeParentesiConWhile()
     {
-        System.Console.WriteLine("=== Tutte le parentesi con while ===");
+        Console.WriteLine("=== Tutte le parentesi con while ===");
 
         string message = "(What if) there are (more than) one (set of parentheses)?";
 
@@ -121,7 +121,7 @@ public static class StringExercises
             openingPosition += 1;
             int closingPosition = message.IndexOf(')');
             int length = closingPosition - openingPosition;
-            System.Console.WriteLine(message.Substring(openingPosition, length));
+            Console.WriteLine(message.Substring(openingPosition, length));
 
             // taglia la stringa dopo la parentesi chiusa → prossima iterazione
             message = message.Substring(closingPosition + 1);
@@ -131,7 +131,7 @@ public static class StringExercises
 
     static void EsercizioIndexOfAny()
     {
-        System.Console.WriteLine("=== IndexOfAny con simboli misti ===");
+        Console.WriteLine("=== IndexOfAny con simboli misti ===");
 
         string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
 
@@ -158,40 +158,40 @@ public static class StringExercises
             closingPosition = message.IndexOf(matchingSymbol, openingPosition);
 
             int length = closingPosition - openingPosition;
-            System.Console.WriteLine(message.Substring(openingPosition, length));
+            Console.WriteLine(message.Substring(openingPosition, length));
         }
         // output: What if / different symbols / open symbol / matching closing symbol
     }
     static void Remove()
     {
-        System.Console.WriteLine("=== Remove — posizione fissa ===");
+        Console.WriteLine("=== Remove — posizione fissa ===");
 
         // Caso d'uso reale: dati con struttura fissa (es. file legacy)
         // 5 cifre ID | 20 caratteri nome | 6 importo | 3 articoli
         string data = "12345John Smith          5000  3  ";
         string updatedData = data.Remove(5, 20); // rimuovo il nome
-        System.Console.WriteLine(updatedData);   // 123455000  3
+        Console.WriteLine(updatedData);   // 123455000  3
 
-        System.Console.WriteLine("=== Remove — posizione dinamica ===");
+        Console.WriteLine("=== Remove — posizione dinamica ===");
 
         // Variante: posizione calcolata con IndexOf
         string message = "What if I want to remove (this part) from the string?";
         int openingPosition = message.IndexOf('(');
         int closingPosition = message.IndexOf(')') + 1;
         string result = message.Remove(openingPosition, closingPosition - openingPosition);
-        System.Console.WriteLine(result);
+        Console.WriteLine(result);
     }
     static void Replace()
     {
-        System.Console.WriteLine("=== Replace — uso diretto ===");
+        Console.WriteLine("=== Replace — uso diretto ===");
 
         // Caso d'uso principale: pulizia di dati con pattern ripetuto
         string message = "This--is--ex-amp-le--da-ta";
         message = message.Replace("--", " ");  // doppio trattino → spazio
         message = message.Replace("-", "");    // trattino singolo → niente
-        System.Console.WriteLine(message);     // This is example data
+        Console.WriteLine(message);     // This is example data
 
-        System.Console.WriteLine("=== Replace — con posizione calcolata ===");
+        Console.WriteLine("=== Replace — con posizione calcolata ===");
 
         // Versione con IndexOf: salva le posizioni in variabili (non ripetere IndexOf)
         string testo = "What if I want to replace (this part) with something else?";
@@ -199,11 +199,11 @@ public static class StringExercises
         int close = testo.IndexOf(')') + 1;        // salvo subito il risultato
         string toReplace = testo.Substring(open, close - open);
         string result = testo.Replace(toReplace, "[REDACTED]");
-        System.Console.WriteLine(result);
+        Console.WriteLine(result);
     }
     static void EsercizioChallengeHtml()
     {
-        System.Console.WriteLine("=== Challenge: estrarre testo da HTML ===");
+        Console.WriteLine("=== Challenge: estrarre testo da HTML ===");
 
         const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
         const string openSpan  = "<span>";
@@ -222,8 +222,8 @@ public static class StringExercises
 
         output = output.Replace("&trade;", "&reg;");
 
-        System.Console.WriteLine($"Quantity: {quantity}"); // <span>5000
-        System.Console.WriteLine($"Output: {output}"); // <h2>Widgets &reg;</h2><span>5000</span>
+        Console.WriteLine($"Quantity: {quantity}"); // <span>5000
+        Console.WriteLine($"Output: {output}"); // <h2>Widgets &reg;</h2><span>5000</span>
     }
     
 }

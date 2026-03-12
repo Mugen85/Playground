@@ -9,7 +9,7 @@
 
 ```
 Playground/
-├── Playground.Console/     # Esercizi eseguibili (un file per argomento)
+├── Playground.App/         # Esercizi eseguibili (un file per argomento)
 ├── Playground.Tests/       # Test xUnit su ogni concetto studiato
 └── README.md
 ```
@@ -25,7 +25,7 @@ git clone https://github.com/Mugen85/Playground.git
 cd Playground
 
 # Esegui gli esercizi
-dotnet run --project Playground.Console
+dotnet run --project Playground.App
 
 # Esegui i test
 dotnet test

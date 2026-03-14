@@ -1,4 +1,5 @@
-namespace Playground.App
+﻿    
+namespace Playground.ContosoApp
 {
     public class DogAdoptionApp
     {
@@ -11,6 +12,7 @@ namespace Playground.App
             string animalPhysicalDescription = "";
             string animalPersonalityDescription = "";
             string animalNickname = "";
+            string suggestedDonation = "";
 
             // #2 variables that support data entry
             int maxPets = 8;
@@ -18,7 +20,7 @@ namespace Playground.App
             string menuSelection = "";
 
             // #3 array used to store runtime data, there is no persisted data
-            string[,] ourAnimals = new string[maxPets, 6];
+            string[,] ourAnimals = new string[maxPets, 7];
 
             // #4 create sample data ourAnimals array entries
             for (int i = 0; i < maxPets; i++)
@@ -32,6 +34,7 @@ namespace Playground.App
                         animalPhysicalDescription = "medium sized cream colored female golden retriever weighing about 45 pounds. housebroken.";
                         animalPersonalityDescription = "loves to have her belly rubbed and likes to chase her tail. gives lots of kisses.";
                         animalNickname = "lola";
+                        suggestedDonation = "85.00";
                         break;
 
                     case 1:
@@ -41,6 +44,7 @@ namespace Playground.App
                         animalPhysicalDescription = "large reddish-brown male golden retriever weighing about 85 pounds. housebroken.";
                         animalPersonalityDescription = "loves to have his ears rubbed when he greets you at the door, or at any time! loves to lean-in and give doggy hugs.";
                         animalNickname = "gus";
+                        suggestedDonation = "49.99";
                         break;
 
                     case 2:
@@ -50,6 +54,7 @@ namespace Playground.App
                         animalPhysicalDescription = "small white female weighing about 8 pounds. litter box trained.";
                         animalPersonalityDescription = "friendly";
                         animalNickname = "snow";
+                        suggestedDonation = "40.00";
                         break;
 
                     case 3:
@@ -59,6 +64,7 @@ namespace Playground.App
                         animalPhysicalDescription = "Medium sized, long hair, yellow, female, about 10 pounds. Uses litter box.";
                         animalPersonalityDescription = "A people loving cat that likes to sit on your lap.";
                         animalNickname = "Lion";
+                        suggestedDonation = "";
                         break;
 
                     default:
@@ -68,6 +74,7 @@ namespace Playground.App
                         animalPhysicalDescription = "";
                         animalPersonalityDescription = "";
                         animalNickname = "";
+                        suggestedDonation = "";
                         break;
 
                 }

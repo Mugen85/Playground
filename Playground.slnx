@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Playground.Console/Playground.App.csproj" />
+  <Project Path="Playground.ContosoApp/Playground.ContosoApp.csproj" />
   <Project Path="Playground.Tests/Playground.Tests.csproj" />
 </Solution>

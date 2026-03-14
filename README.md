@@ -58,6 +58,7 @@ Ogni commit corrisponde a un concetto studiato e compreso — non solo copiato.
 
 ## Stack
 
+![CI](https://github.com/Mugen85/Playground/actions/workflows/ci.yml/badge.svg)
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?style=flat&logo=dotnet)
 ![C#](https://img.shields.io/badge/C%23-Latest-239120?style=flat&logo=c-sharp)
 ![xUnit](https://img.shields.io/badge/xUnit-Tests-blue?style=flat)

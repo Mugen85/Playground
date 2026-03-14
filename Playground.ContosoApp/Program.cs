@@ -1,4 +1,6 @@
-﻿    
+﻿
+using System.Globalization;
+
 namespace Playground.ContosoApp
 {
     public class DogAdoptionApp
@@ -18,9 +20,12 @@ namespace Playground.ContosoApp
             int maxPets = 8;
             string? readResult;
             string menuSelection = "";
+            decimal decimalDonation = 0.00m;
 
             // #3 array used to store runtime data, there is no persisted data
             string[,] ourAnimals = new string[maxPets, 7];
+
+            CultureInfo.CurrentCulture = new CultureInfo("en-US");
 
             // #4 create sample data ourAnimals array entries
             for (int i = 0; i < maxPets; i++)
@@ -85,6 +90,12 @@ namespace Playground.ContosoApp
                 ourAnimals[i, 3] = "Nickname: " + animalNickname;
                 ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
                 ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
+
+                if (!decimal.TryParse(suggestedDonation, out decimalDonation))
+                {
+                    decimalDonation = 45.00m; // if suggestedDonation NOT a number, default to 45.00
+                }
+                ourAnimals[i, 6] = $"Suggested Donation: {decimalDonation:C2}";
 
             }
 

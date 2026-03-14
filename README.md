@@ -9,8 +9,9 @@
 
 ```
 Playground/
-├── Playground.App/         # Esercizi eseguibili (un file per argomento)
-├── Playground.Tests/       # Test xUnit su ogni concetto studiato
+├── Playground.App/          # Esercizi eseguibili (un file per argomento)
+├── Playground.ContosoApp/   # Progetto guidato MS Learn — Contoso PetFriends
+├── Playground.Tests/        # Test xUnit su ogni concetto studiato
 └── README.md
 ```
 
@@ -26,6 +27,9 @@ cd Playground
 
 # Esegui gli esercizi
 dotnet run --project Playground.App
+
+# Esegui il progetto guidato Contoso
+dotnet run --project Playground.ContosoApp
 
 # Esegui i test
 dotnet test

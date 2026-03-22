@@ -48,7 +48,8 @@ dotnet test
 | `Remove` — rimuovere caratteri per posizione fissa o dinamica | `StringExercises.cs` | `StringExercisesTests.cs` |
 | `Replace` — sostituire tutte le occorrenze di una sottostringa | `StringExercises.cs` | `StringExercisesTests.cs` |
 | Challenge HTML — estrarre, rimuovere e sostituire da stringa HTML | `StringExercises.cs` | `StringExercisesTests.cs` |
-| Progetto guidato Contoso PetFriends — array, loop, TryParse, ricerca | `Playground.ContosoApp/Program.cs` | — |
+| Progetto guidato Contoso PetFriends — array, TryParse, valuta :C2 | `Playground.ContosoApp/Program.cs` | — |
+| Contoso PetFriends — ricerca cani per caratteristica con while + Contains | `Playground.ContosoApp/Program.cs` | — |
 
 *(aggiornato man mano che procede lo studio)*
 

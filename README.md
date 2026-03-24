@@ -50,6 +50,8 @@ dotnet test
 | Challenge HTML — estrarre, rimuovere e sostituire da stringa HTML | `StringExercises.cs` | `StringExercisesTests.cs` |
 | Progetto guidato Contoso PetFriends — array, TryParse, valuta :C2 | `Playground.ContosoApp/Program.cs` | — |
 | Contoso PetFriends — ricerca cani per caratteristica con while + Contains | `Playground.ContosoApp/Program.cs` | — |
+| Contoso PetFriends — ricerca multi-termine con Split, Sort e foreach annidato | `Playground.ContosoApp/Program.cs` | — |
+| Contoso PetFriends — animazione terminale con \r, Thread.Sleep e conto alla rovescia | `Playground.ContosoApp/Program.cs` | — |
 
 *(aggiornato man mano che procede lo studio)*
 

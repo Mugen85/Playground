@@ -1,5 +1,6 @@
 ﻿
 using System.Globalization;
+using System.Threading;
 
 // #1 the ourAnimals array will store the following: 
 string animalSpecies = "";
@@ -157,6 +158,18 @@ do
             {
                 if (ourAnimals[i, 1].Contains("dog"))
                 {
+
+                    string[] searchingIcons = { "|", "/", "-", "\\" };
+
+                    for (int j = 2; j >= 0; j--)
+                    {
+                        foreach (string icon in searchingIcons)
+                        {
+                            Console.Write($"\rsearching our dog {ourAnimals[i, 3]} for {dogCharacteristic} {j}.. {icon}");
+                            Thread.Sleep(200);
+                        }
+                    }
+                    Console.WriteLine();
                     // #7 Search combined descriptions and report results
                     dogDescription = ourAnimals[i, 4] + "\n" + ourAnimals[i, 5];
                     dogMatch = false; // reset for next dog

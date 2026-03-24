@@ -135,19 +135,23 @@ do
         case "2":
             // Display all dogs with a specified characteristic
             string dogCharacteristic = "";
+            string[] searchTerms = Array.Empty<string>();
 
             while (dogCharacteristic == "")
             {
                 // have the user enter physical characteristics to search for
-                Console.WriteLine($"\nEnter one desired dog characteristics to search for");
+                Console.WriteLine($"\nEnter one or more desired dog characteristics separated by commas to search for");
                 readResult = Console.ReadLine();
                 if (readResult != null)
                 {
                     dogCharacteristic = readResult.ToLower().Trim();
+                    searchTerms = dogCharacteristic.Split(',').Select(t => t.Trim()).ToArray();
                 }
             }
+            Array.Sort(searchTerms);
             string dogDescription = "";
             bool noMatchesDog = true;
+            bool dogMatch = false;
             // #6 loop through the ourAnimals array to search for matching animals
             for (int i = 0; i < maxPets; i++)
             {
@@ -155,11 +159,19 @@ do
                 {
                     // #7 Search combined descriptions and report results
                     dogDescription = ourAnimals[i, 4] + "\n" + ourAnimals[i, 5];
-                    if (dogDescription.Contains(dogCharacteristic))
+                    dogMatch = false; // reset for next dog
+                    foreach (string searchTerm in searchTerms)
+                    {
+                        if (dogDescription.ToLower().Contains(searchTerm))
+                        {
+                            dogMatch = true;
+                            break; // if any search term is found, report this dog as a match and exit the loop to avoid reporting the same dog multiple times
+                        }
+                    }
+                    if (dogMatch)
                     {
                         Console.WriteLine($"\nOur dog {ourAnimals[i, 3]} is a match!");
                         Console.WriteLine(dogDescription);
-
                         noMatchesDog = false;
                     }
                 }

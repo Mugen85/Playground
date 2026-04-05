@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Playground.App/Playground.App.csproj" />
   <Project Path="Playground.ContosoApp/Playground.ContosoApp.csproj" />
+  <Project Path="Playground.Domain/Playground.Domain.csproj" />
   <Project Path="Playground.Tests/Playground.Tests.csproj" />
 </Solution>

@@ -71,8 +71,8 @@ Il progetto `ContosoApp` viene progressivamente smontato e ricostruito seguendo 
 | Step | Layer | Stato |
 |------|-------|-------|
 | Entities: `Pet`, `Dog`, `Cat` | `Playground.Domain` | ✅ |
-| Interfaccia `IPetRepository` | `Playground.Domain` | 🔄 in corso |
-| `InMemoryPetRepository` | `Playground.Infrastructure` | ⏳ |
+| Interfaccia `IPetRepository` | `Playground.Domain` | ✅ |
+| `InMemoryPetRepository` | `Playground.Infrastructure` | 🔄 in corso |
 | `PetSearchService` | `Playground.Application` | ⏳ |
 | Rewire console con dependency injection | `Playground.ConsoleHost` | ⏳ |
 

@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Playground.Domain.Entities;
 using Playground.Domain.Repositories;
 
@@ -9,14 +10,18 @@ namespace Playground.Infrastructure.Repositories;
 /// </summary>
 public class InMemoryPetRepository : IPetRepository
 {
-    // Il nostro "database" privato. Essendo readonly, il riferimento non cambia,
-    // ma la lista interna può essere modificata (tramite AddAsync).
-    private readonly List<Pet> _pets;
+    // Il nostro "database" privato diventa un ConcurrentDictionary.
+    // Thread-safe e velocissimo per i lookup. La chiave (string) sarà l'ID del Pet.
+    private readonly ConcurrentDictionary<string, Pet> _pets;
 
     public InMemoryPetRepository()
     {
-        // "Seeding" dei dati storici presi dal vecchio ContosoApp
-        _pets = new List<Pet>
+        // Inizializziamo il dizionario. Passiamo StringComparer.OrdinalIgnoreCase 
+        // così la ricerca per chiave (ID) se ne frega delle maiuscole/minuscole in modo nativo.
+        _pets = new ConcurrentDictionary<string, Pet>(StringComparer.OrdinalIgnoreCase);
+
+        // Seeding dei dati
+        var seedPets = new List<Pet>
         {
             new Dog("d1", "lola", 2, 
                 "medium sized cream colored female golden retriever weighing about 45 pounds. housebroken.", 
@@ -36,27 +41,34 @@ public class InMemoryPetRepository : IPetRepository
             new Cat("c4", "Lion", 3, 
                 "Medium sized, long hair, yellow, female, about 10 pounds. Uses litter box.", 
                 "A people loving cat that likes to sit on your lap.", 
-                45.00m) // 45.00 era il fallback nel vecchio codice se la stringa era vuota
+                45.00m)
         };
+
+        foreach (var pet in seedPets)
+        {
+            _pets.TryAdd(pet.Id, pet);
+        }
     }
 
     public Task<IReadOnlyCollection<Pet>> GetAllAsync()
     {
-        // Task.FromResult crea un Task già completato. 
-        // Simula il comportamento asincrono di un vero DB senza overhead.
-        return Task.FromResult<IReadOnlyCollection<Pet>>(_pets.AsReadOnly());
+        // .Values estrae solo gli oggetti Pet dal dizionario.
+        // Chiamiamo ToList() per materializzare la collezione prima di fare AsReadOnly()
+        return Task.FromResult<IReadOnlyCollection<Pet>>(_pets.Values.ToList().AsReadOnly());
     }
 
     public Task<Pet?> GetByIdAsync(string id)
     {
-        // OrdinalIgnoreCase è sempre la scelta più performante e sicura per gli ID alfanumerici
-        var pet = _pets.FirstOrDefault(p => p.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
+        // Prestazioni O(1): non scorre più tutta la lista. Va dritto al bersaglio.
+        // TryGetValue è sicuro: se non trova nulla, out pet è null.
+        _pets.TryGetValue(id, out var pet);
         return Task.FromResult(pet);
     }
 
     public Task AddAsync(Pet pet)
     {
-        _pets.Add(pet);
+        // TryAdd è thread-safe. Se l'ID esiste già, lo ignora (o potresti lanciare un'eccezione di dominio).
+        _pets.TryAdd(pet.Id, pet);
         return Task.CompletedTask;
     }
 
@@ -67,16 +79,13 @@ public class InMemoryPetRepository : IPetRepository
             return Task.FromResult<IReadOnlyCollection<Dog>>(new List<Dog>().AsReadOnly());
         }
 
-        // Filtriamo eventuali stringhe vuote passate per errore
         var terms = searchTerms.Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
 
-        // LINQ in azione: niente più tripli cicli for/foreach annidati come nella vecchia app!
-        var query = _pets
-            .OfType<Dog>() // Estrae in automatico solo i cani (cast sicuro)
+        var query = _pets.Values // Iteriamo solo sui valori
+            .OfType<Dog>()
             .Where(dog => 
             {
                 var description = dog.GetFullDescription();
-                // Ritorna true se ALMENO UNO (Any) dei termini è contenuto nella descrizione
                 return terms.Any(term => description.Contains(term, StringComparison.OrdinalIgnoreCase));
             });
 

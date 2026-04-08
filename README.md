@@ -59,7 +59,8 @@ dotnet test
 | Contoso PetFriends — ricerca cani per caratteristica con `while` + `Contains` | `Playground.ContosoApp/Program.cs` | — |
 | Contoso PetFriends — ricerca multi-termine con `Split`, `Sort` e `foreach` annidato | `Playground.ContosoApp/Program.cs` | — |
 | Contoso PetFriends — animazione terminale con `\r`, `Thread.Sleep` e conto alla rovescia | `Playground.ContosoApp/Program.cs` | — |
-| Domain entities — `Pet` (abstract), `Dog`, `Cat` con guardie e nullable | `Playground.Domain/Entities/` | *(in arrivo)* |
+| Domain entities — Pet (abstract), Dog, Cat con guardie e nullable | Playground.Domain/Entities/ | *(in arrivo)* |
+| Repository Pattern (Contratto) — IPetRepository con asincronia (Task) e IReadOnlyCollection | Playground.Domain/Repositories/ | *(in arrivo)* |
 
 *(aggiornato man mano che procede lo studio)*
 

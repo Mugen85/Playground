@@ -8,11 +8,12 @@
 ## Struttura
 
 ```
-Playground/
-├── Playground.App/          # Esercizi eseguibili (un file per argomento)
-├── Playground.ContosoApp/   # Progetto guidato MS Learn — Contoso PetFriends (versione originale, archivio)
-├── Playground.Domain/       # Entità del dominio — Pet, Dog, Cat (refactoring di ContosoApp)
-├── Playground.Tests/        # Test xUnit su ogni concetto studiato
+Playground/  
+├── Playground.App/            \# Esercizi eseguibili (un file per argomento)  
+├── Playground.ContosoApp/     \# Progetto guidato MS Learn — Contoso PetFriends (versione originale, archivio)  
+├── Playground.Domain/         \# Entità del dominio — Pet, Dog, Cat (refactoring di ContosoApp)  
+├── Playground.Infrastructure/ \# Implementazione dei contratti (es. InMemoryPetRepository)  
+├── Playground.Tests/          \# Test xUnit su ogni concetto studiato  
 └── README.md
 ```
 

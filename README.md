@@ -10,6 +10,7 @@
 ```
 Playground/  
 ├── Playground.App/            \# Esercizi eseguibili (un file per argomento)  
+├── Playground.Application/    \# Casi d'uso e orchestrazione (es. PetSearchService)  
 ├── Playground.ContosoApp/     \# Progetto guidato MS Learn — Contoso PetFriends (versione originale, archivio)  
 ├── Playground.Domain/         \# Entità del dominio — Pet, Dog, Cat (refactoring di ContosoApp)  
 ├── Playground.Infrastructure/ \# Implementazione dei contratti (es. InMemoryPetRepository)  
@@ -61,6 +62,7 @@ dotnet test
 | Contoso PetFriends — animazione terminale con `\r`, `Thread.Sleep` e conto alla rovescia | `Playground.ContosoApp/Program.cs` | — |
 | Domain entities — Pet (abstract), Dog, Cat con guardie e nullable | Playground.Domain/Entities/ | *(in arrivo)* |
 | Repository Pattern (Contratto) — IPetRepository con asincronia (Task) e IReadOnlyCollection | Playground.Domain/Repositories/ | *(in arrivo)* |
+| Data Structures: ConcurrentDictionary per lookup ![][image1] e Thread-Safety | InMemoryPetRepository.cs | *(in arrivo)* |
 
 *(aggiornato man mano che procede lo studio)*
 
@@ -72,11 +74,11 @@ Il progetto `ContosoApp` viene progressivamente smontato e ricostruito seguendo 
 
 | Step | Layer | Stato |
 |------|-------|-------|
-| Entities: `Pet`, `Dog`, `Cat` | `Playground.Domain` | ✅ |
-| Interfaccia `IPetRepository` | `Playground.Domain` | ✅ |
-| `InMemoryPetRepository` | `Playground.Infrastructure` | 🔄 in corso |
-| `PetSearchService` | `Playground.Application` | ⏳ |
-| Rewire console con dependency injection | `Playground.ConsoleHost` | ⏳ |
+| Entities: Pet, Dog, Cat | Playground.Domain | ✅ |
+| Interfaccia IPetRepository | Playground.Domain | ✅ |
+| InMemoryPetRepository | Playground.Infrastructure | ✅ |
+| PetSearchService | Playground.Application | ✅ |
+| Rewire console con dependency injection | Playground.ConsoleHost | ⏳ |
 
 ---
 

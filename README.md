@@ -62,7 +62,7 @@ dotnet test
 | Contoso PetFriends — animazione terminale con `\r`, `Thread.Sleep` e conto alla rovescia | `Playground.ContosoApp/Program.cs` | — |
 | Domain entities — Pet (abstract), Dog, Cat con guardie e nullable | Playground.Domain/Entities/ | *(in arrivo)* |
 | Repository Pattern (Contratto) — IPetRepository con asincronia (Task) e IReadOnlyCollection | Playground.Domain/Repositories/ | *(in arrivo)* |
-| Data Structures: ConcurrentDictionary per lookup ![][image1] e Thread-Safety | InMemoryPetRepository.cs | *(in arrivo)* |
+| Data Structures: ConcurrentDictionary per lookup e Thread-Safety | InMemoryPetRepository.cs | *(in arrivo)* |
 
 *(aggiornato man mano che procede lo studio)*
 

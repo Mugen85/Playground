@@ -1,6 +1,7 @@
-using System.Collections.Concurrent;
 using Playground.Domain.Entities;
 using Playground.Domain.Repositories;
+using System.Collections.Concurrent;
+using System.Text.RegularExpressions;
 
 namespace Playground.Infrastructure.Repositories;
 
@@ -20,7 +21,7 @@ public class InMemoryPetRepository : IPetRepository
         // così la ricerca per chiave (ID) se ne frega delle maiuscole/minuscole in modo nativo.
         _pets = new ConcurrentDictionary<string, Pet>(StringComparer.OrdinalIgnoreCase);
 
-        // Seeding dei dati
+        // Seeding dei dati storici
         var seedPets = new List<Pet>
         {
             new Dog("d1", "lola", 2, 
@@ -67,28 +68,33 @@ public class InMemoryPetRepository : IPetRepository
 
     public Task AddAsync(Pet pet)
     {
-        // TryAdd è thread-safe. Se l'ID esiste già, lo ignora (o potresti lanciare un'eccezione di dominio).
+        // TryAdd è thread-safe. Se l'ID esiste già, lo ignora.
         _pets.TryAdd(pet.Id, pet);
         return Task.CompletedTask;
     }
 
-    public Task<IReadOnlyCollection<Dog>> SearchDogsAsync(IEnumerable<string> searchTerms)
+    // ECCO IL METODO AGGIORNATO CHE RISOLVE L'ERRORE DI BUILD
+    public Task<IReadOnlyCollection<Pet>> SearchPetsAsync(IEnumerable<string> searchTerms)
     {
         if (searchTerms == null || !searchTerms.Any())
         {
-            return Task.FromResult<IReadOnlyCollection<Dog>>(new List<Dog>().AsReadOnly());
+            return Task.FromResult<IReadOnlyCollection<Pet>>(new List<Pet>().AsReadOnly());
         }
 
         var terms = searchTerms.Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
 
-        var query = _pets.Values // Iteriamo solo sui valori
-            .OfType<Dog>()
-            .Where(dog => 
+        var query = _pets.Values // Iteriamo su TUTTI gli animali (niente più OfType<Dog>)
+            .Where(pet => 
             {
-                var description = dog.GetFullDescription();
-                return terms.Any(term => description.Contains(term, StringComparison.OrdinalIgnoreCase));
+                var description = pet.GetFullDescription();
+                
+                // Regex in azione: \b indica il "confine" di una parola. 
+                // Regex.Escape ci protegge se l'utente inserisce caratteri speciali strani.
+                // In questo modo "male" matcherá solo "male" e non "female".
+                return terms.Any(term => 
+                    Regex.IsMatch(description, $@"\b{Regex.Escape(term)}\b", RegexOptions.IgnoreCase));
             });
 
-        return Task.FromResult<IReadOnlyCollection<Dog>>(query.ToList().AsReadOnly());
+        return Task.FromResult<IReadOnlyCollection<Pet>>(query.ToList().AsReadOnly());
     }
 }

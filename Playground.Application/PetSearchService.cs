@@ -15,13 +15,13 @@ public class PetSearchService
     }
 
     /// <summary>
-    /// Orchestra la ricerca dei cani partendo dall'input grezzo dell'utente.
+    /// Orchestra la ricerca degli animali partendo dall'input grezzo dell'utente.
     /// </summary>
-    public async Task<IReadOnlyCollection<Dog>> SearchDogsByCharacteristicsAsync(string rawInput)
+    public async Task<IReadOnlyCollection<Pet>> SearchPetsByCharacteristicsAsync(string rawInput)
     {
         if (string.IsNullOrWhiteSpace(rawInput))
         {
-            return new List<Dog>().AsReadOnly();
+            return new List<Pet>().AsReadOnly();
         }
 
         // Pulizia dei condotti: gestiamo l'input dell'utente qui nell'Application layer.
@@ -32,6 +32,6 @@ public class PetSearchService
             .ToList();
 
         // Passiamo la palla al repository
-        return await _petRepository.SearchDogsAsync(searchTerms);
+        return await _petRepository.SearchPetsAsync(searchTerms);
     }
 }

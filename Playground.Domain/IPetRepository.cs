@@ -25,9 +25,8 @@ public interface IPetRepository
     Task AddAsync(Pet pet);
 
     /// <summary>
-    /// Cerca cani le cui descrizioni corrispondono ad almeno uno dei termini di ricerca.
-    /// Passiamo l'onere della ricerca all'infrastruttura (che in futuro potrebbe
-    /// tradurla in una query SQL LIKE o in una ricerca full-text).
+    /// Cerca animali le cui descrizioni corrispondono ad almeno uno dei termini di ricerca.
+    /// Passiamo l'onere della ricerca all'infrastruttura.
     /// </summary>
-    Task<IReadOnlyCollection<Dog>> SearchDogsAsync(IEnumerable<string> searchTerms);
+    Task<IReadOnlyCollection<Pet>> SearchPetsAsync(IEnumerable<string> searchTerms);
 }

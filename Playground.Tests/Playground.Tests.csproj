@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Playground.App\Playground.App.csproj" />
+    <ProjectReference Include="..\Playground.Domain\Playground.Domain.csproj" />
+    <ProjectReference Include="..\Playground.Infrastructure\Playground.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

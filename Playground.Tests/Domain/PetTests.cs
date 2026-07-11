@@ -55,4 +55,18 @@ public class PetTests
         // Assert
         Assert.Equal("Pelo lungo. Molto timida.", fullDesc);
     }
+
+    [Fact]
+    public void IsUrgent_SeImpostataTrue_VieneLettaCorrettamente()
+    {
+        // Arrange & Act
+        // Usiamo l'Object Initializer { IsUrgent = true } grazie alla keyword 'init'
+        var urgentDog = new Dog("d99", "Vecchia Roccia", 12, "Pelo grigio", "Tranquillo", 20.0m)
+        {
+            IsUrgent = true
+        };
+
+        // Assert
+        Assert.True(urgentDog.IsUrgent);
+    }
 }

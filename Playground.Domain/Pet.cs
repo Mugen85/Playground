@@ -14,6 +14,10 @@ public abstract class Pet
     public string PersonalityDescription { get; }
     public decimal SuggestedDonation { get; }
 
+     // NUOVA PROPRIETÀ: Indica se l'animale necessita di un'adozione urgente.
+    // Di default è falsa. Solo chi crea l'oggetto può impostarla (init).
+    public bool IsUrgent { get; init; } = false;
+
     // Proprietà astratta: ogni sottoclasse dichiara la propria specie.
     // È una proprietà e non un campo perché in futuro potrebbe
     // derivare da logica (es. localizzazione).

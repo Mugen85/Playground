@@ -14,9 +14,15 @@ public abstract class Pet
     public string PersonalityDescription { get; }
     public decimal SuggestedDonation { get; }
 
-     // NUOVA PROPRIETÀ: Indica se l'animale necessita di un'adozione urgente.
+    // NUOVA PROPRIETÀ: Indica se l'animale necessita di un'adozione urgente.
     // Di default è falsa. Solo chi crea l'oggetto può impostarla (init).
     public bool IsUrgent { get; init; } = false;
+
+    // COSTRUTTORE PER EF CORE: Una "porta di servizio" segreta per il database.
+    // Disabilitiamo temporaneamente l'avviso del compilatore per le stringhe non-nullable.
+#pragma warning disable CS8618
+    protected Pet() { }
+#pragma warning restore CS8618
 
     // Proprietà astratta: ogni sottoclasse dichiara la propria specie.
     // È una proprietà e non un campo perché in futuro potrebbe

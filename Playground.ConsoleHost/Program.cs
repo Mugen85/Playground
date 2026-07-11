@@ -12,11 +12,10 @@ class Program
         // 1. SETUP DELLA CENTRALINA (Dependency Injection)
         var services = new ServiceCollection();
 
-        // Registriamo il repository come SINGLETON.
-        // Perché? Dato che usa un dizionario in memoria, vogliamo che la stessa istanza 
-        // "viva" per tutta la durata dell'app, altrimenti a ogni richiesta ripartiremmo da zero.
-        // Se domani mettessimo un DB vero (es. SQL Server), lo cambieremmo in AddScoped o AddTransient.
-        services.AddSingleton<IPetRepository, InMemoryPetRepository>();
+        // Sostituiamo il vecchio InMemoryPetRepository con il nuovo SqlitePetRepository!
+        // Usiamo AddScoped (e non Singleton) perché il DbContext è progettato per vivere 
+        // per una singola "richiesta" o sessione di lavoro, come una transazione.
+        services.AddScoped<IPetRepository, SqlitePetRepository>();
 
         // Registriamo il servizio applicativo. AddTransient va benissimo: ogni volta che
         // ce ne serve uno, il sistema ce ne dà un'istanza nuova, iniettandogli dentro il repository.
@@ -48,7 +47,7 @@ class Program
                 case "1":
                     // Chiamata asincrona pulita al nostro Domain/Infrastructure
                     var allPets = await petRepository.GetAllAsync();
-                    
+
                     Console.WriteLine("\n--- Elenco Animali ---");
                     foreach (var pet in allPets)
                     {
@@ -56,7 +55,7 @@ class Program
                         Console.WriteLine(pet.ToString());
                         Console.WriteLine($"   Descrizione: {pet.GetFullDescription()}");
                     }
-                    
+
                     Console.WriteLine("\nPremi Invio per continuare...");
                     Console.ReadLine();
                     break;
@@ -64,11 +63,11 @@ class Program
                 case "2":
                     Console.WriteLine("\nInserisci una o più caratteristiche separate da virgola (es. 'white, friendly, male'):");
                     var input = Console.ReadLine();
-                    
+
                     // Deleghiamo tutta la fatica (split, validazione, ricerca) al layer Application
                     // Usiamo il nuovo metodo generico per i Pet!
                     var matchingPets = await searchService.SearchPetsByCharacteristicsAsync(input ?? "");
-                    
+
                     if (!matchingPets.Any())
                     {
                         Console.WriteLine("\nNessun animale trovato con queste caratteristiche.");
@@ -82,7 +81,7 @@ class Program
                             Console.WriteLine($"  {pet.GetFullDescription()}");
                         }
                     }
-                    
+
                     Console.WriteLine("\nPremi Invio per continuare...");
                     Console.ReadLine();
                     break;

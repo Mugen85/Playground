@@ -4,6 +4,9 @@ public sealed class Dog : Pet
 {
     public override string Species => "dog";
 
+        // COSTRUTTORE PER EF CORE
+    private Dog() { }
+
     public Dog(
         string id,
         string nickname,

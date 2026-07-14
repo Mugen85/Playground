@@ -2,6 +2,8 @@
 using Playground.Application.Services;
 using Playground.Domain.Repositories;
 using Playground.Infrastructure.Repositories;
+using Playground.Infrastructure.Data; // Aggiunto per risolvere PetDbContext
+using Microsoft.EntityFrameworkCore;  // Aggiunto per risolvere UseSqlite
 
 namespace Playground.ConsoleHost;
 
@@ -11,6 +13,10 @@ class Program
     {
         // 1. SETUP DELLA CENTRALINA (Dependency Injection)
         var services = new ServiceCollection();
+
+        // Dobbiamo dire al sistema dove si trova il file fisico del database
+        services.AddDbContext<PetDbContext>(options =>
+            options.UseSqlite("Data Source=pets.db"));
 
         // Sostituiamo il vecchio InMemoryPetRepository con il nuovo SqlitePetRepository!
         // Usiamo AddScoped (e non Singleton) perché il DbContext è progettato per vivere 
